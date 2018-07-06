@@ -1,0 +1,48 @@
+@import './base/_varible.less';
+@import './base/normalize.less';
+@import './base/common.less';
+
+.btn{
+    display: block;
+    font-size: 14px;
+    padding: 10px 0;
+    background: @btn-bcolor;
+    color: #fff;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid @btn-bcolor;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+
+    &.min{
+        display: inline-block;
+        padding: 4px 8px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    &.btn-link{
+        background: transparent;
+        border: none;
+        color: @h-color;
+    }
+
+    &[disabled]{
+        background: rgba(20, 20, 32, .5);
+        color: #575f90;
+        border-color:rgba(0,0,0, 0.3); 
+    }
+}
+.btn-primary{
+    // background: url('/static/img/btnbg@2x.png') no-repeat;
+    // background-size: 100% 100%;
+    background: linear-gradient(to right, #6196ff, #506aff);
+}
+.btn-back{
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    background: url('/static/img/back-arrow@2x.png') no-repeat center;
+    background-size: 30px;
+}
