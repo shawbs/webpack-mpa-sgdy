@@ -18,18 +18,20 @@ const devConfig = merge(webpackBaseConfig,{
 	devtool: 'cheap-module-eval-source-map',
 
 	devServer:{
-
-		// quiet: true,
-		contentBase: path.join(__dirname, "static"),
+		clientLogLevel: 'warning',
+		// contentBase: false, //告诉服务器从哪里提供内容
+		quiet: true,
 		compress: true,
 		hot: true,
-		host: '0.0.0.0',
-  		port: 3001,
-  		publicPath: '/'
+		host: conf.config.host,
+		port: conf.config.port,
+  		publicPath: conf.config.publicPath
 	},
 	
 	plugins: [
-
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('development')
+		}),
 
 		new webpack.HotModuleReplacementPlugin(),
 	    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.

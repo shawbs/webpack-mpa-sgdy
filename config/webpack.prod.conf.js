@@ -20,8 +20,12 @@ const prodConfig = merge(webpackBaseConfig,{
 	devtool: 'none',
 	
 	plugins: [
-
-		// new cleanWebpackPlugin(["dist"]),
+		new webpack.DefinePlugin({
+	       'process.env.NODE_ENV': JSON.stringify('production')
+		}),
+		new cleanWebpackPlugin(["dist"],{
+			root: path.resolve(__dirname,'../')
+		}),
 
 		new UglifyJsPlugin({
 	      uglifyOptions: {
@@ -61,13 +65,16 @@ const prodConfig = merge(webpackBaseConfig,{
 
 })
 
-prodConfig.module.rules.push({
-	test: /\.less$/,
-	use: ExtractTextPlugin.extract({
-		fallback: 'style-loader',
-		use: ['css-loader', 'less-loader']
-	})
-})
+prodConfig.module.rules.push(
+	{
+		test: /\.less$/,
+		use: ExtractTextPlugin.extract({
+			fallback: 'style-loader',
+			use: ['css-loader', 'less-loader']
+		})
+	}
+)
+
 
 conf.pages.forEach(page=>{
 	prodConfig.plugins.push(
@@ -81,5 +88,17 @@ conf.pages.forEach(page=>{
 	)
 })	
 
-
-module.exports = prodConfig
+console.log('Build start...\n')
+webpack(prodConfig, (err,stats)=>{
+	if(err) throw err
+	const info = stats.toJson();
+	if(stats.hasErrors()){
+		console.log('ERROR:',info.errors)
+		process.exit()
+	}
+	if (stats.hasWarnings()) {
+		console.warn('WARN:',info.warnings);
+	}
+	
+	console.log('build successful...\n')
+})
