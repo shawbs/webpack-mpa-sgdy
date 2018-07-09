@@ -23,6 +23,10 @@ const prodConfig = merge(webpackBaseConfig,{
 		new webpack.DefinePlugin({
 	       'process.env.NODE_ENV': JSON.stringify('production')
 		}),
+		// new webpack.ProvidePlugin({
+		// 	$: 'jquery',
+		// }),
+
 		new cleanWebpackPlugin(["dist"],{
 			root: path.resolve(__dirname,'../')
 		}),
@@ -44,6 +48,7 @@ const prodConfig = merge(webpackBaseConfig,{
 				ignore: ['.*']
 			}
 		]),
+		
 		new ExtractTextPlugin({
 			filename: util.assetsPath('css/[name].[contenthash].css'),
 			allChunks: true

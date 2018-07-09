@@ -44,9 +44,9 @@ const devConfig = merge(webpackBaseConfig,{
 				ignore: ['.*']
 			}
 		]),
-		new webpack.ProvidePlugin({
-			$: 'jquery',
-		})
+		// new webpack.ProvidePlugin({
+		// 	$: 'jquery',
+		// })
 		
 		
 		

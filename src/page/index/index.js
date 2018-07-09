@@ -11,7 +11,7 @@ $(function(){
                 list += `<li data-id="${item.id}">${item.title}<span class="time">${item.create_at}</span></li>`
             }
             list+="</ul>"
-            $('body').append(list)
+            $('.container').append(list)
        } 
     })
 })
