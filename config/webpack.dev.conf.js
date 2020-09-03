@@ -1,3 +1,9 @@
+/*
+ * @Author: Shawbs
+ * @LastEditors: Shawbs
+ * @Date: 2020-09-03 17:03:07
+ * @LastEditTime: 2020-09-03 17:09:16
+ */
 
 const path = require('path');
 var webpack = require('webpack');
@@ -74,7 +80,7 @@ conf.pages.forEach(page=>{
 devConfig.plugins.push(
 	new FriendlyErrorsPlugin({
 		compilationSuccessInfo: {
-          messages: [`Your application is running here: http://192.168.2.119:3001`],
+          messages: [`Your application is running here: http://${conf.config.host}:${conf.config.port}`],
         }
 	})
 )
